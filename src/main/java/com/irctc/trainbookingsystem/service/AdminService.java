@@ -7,7 +7,7 @@ import com.irctc.trainbookingsystem.entity.Train;
 
 public interface AdminService {
 
-	public TrainDto addTrain(TrainDto train);
+	public Train addTrain(TrainDto trainDto);
 	public TrainDto getTrainByNumber(Long trainNumber);
 	public boolean deleteTrain(Long trainNumber);
 	public TrainDto modifyTrain(Long trainNumber,TrainDto trainDto);

@@ -20,16 +20,21 @@ public class TrainServiceImpl implements TrainService {
 	
 	@Override
 	public TrainDto getTrainByName(String trainName) {
-		Train train=trainDao.findBytrainName(trainName);
-		Optional<Train> trainCheck = trainDao.findById(train.getTrainNo());
-		TrainDto trainDto=new TrainDto();
-		BeanUtils.copyProperties(train, trainDto);
+		
+		try {
+			
+			Optional<Train> trainCheck = trainDao.findBytrainName(trainName);
+					
+			TrainDto trainDto=new TrainDto();
+			BeanUtils.copyProperties(trainCheck.get(), trainDto);
 		if (trainCheck.isPresent()) {
 			return trainDto;
-		} else {
-			throw new NoDataPresentException("Train Not Found with Number" + trainName);
+		} else {	
+			throw new NullPointerException("Train Not Found with Name" + trainName);
 		}
-
+		}catch(Exception e) {
+			throw new NullPointerException(e.getMessage());
+		}
 	}
 	
 	public List<Train> getAllTrainsFromSourceToDestination(String StartStation, String DestinationStation) {
@@ -48,22 +53,23 @@ public class TrainServiceImpl implements TrainService {
 
 	@Override
 	public int getTrainFaresByClassType(Long trainNumber, String classType) {
-	 Optional<Train> train=trainDao.findById(trainNumber);
-	 if(train.isPresent()) {
+	 Optional<Train> trainCheck=trainDao.findById(trainNumber);
+	 Train train=trainCheck.get();
+	 if(trainCheck.isPresent()) {
 		 if( classType.equalsIgnoreCase("FirstAc")) {
-			 return train.get().getFarelist().getFirstAcFare();
+			 return train.getFarelist().getFirstAcFare();
 			 
 		 }else if( classType.equalsIgnoreCase("SecondAc")) {
-			 return train.get().getFarelist().getSecondAcFare();
+			 return train.getFarelist().getSecondAcFare();
 			 
 		 }else if( classType.equalsIgnoreCase("ThirdAc")) {
-			 return train.get().getFarelist().getThirdAcFare();
+			 return train.getFarelist().getThirdAcFare();
 			 
 		 }else if( classType.equalsIgnoreCase("SleeperClass")) {
-		 return train.get().getFarelist().getSleeperClassFare();
+		 return train.getFarelist().getSleeperClassFare();
 		
 		 }else if( classType.equalsIgnoreCase("SecondarySitting")) {
-		 return train.get().getFarelist().getSecondarySittingFare();
+		 return train.getFarelist().getSecondarySittingFare();
 		 }else {
 		throw new NoDataPresentException("Please Send the Correct ClassType");
 		 }

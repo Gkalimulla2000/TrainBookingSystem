@@ -3,30 +3,28 @@ package com.irctc.trainbookingsystem.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Train implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	private long trainNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long trainNo;
 	private String trainName;
-	/*
-	 * @OneToOne(targetEntity = ClassType.class, cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "classType_id", referencedColumnName = "id") private
-	 * ClassType classsType;
-	 */
 	@OneToOne(targetEntity = Fare.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "Fare_id", referencedColumnName = "id")
+	@JoinColumn(name = "fare_id", referencedColumnName = "id")
 	private Fare farelist;
 	@ManyToOne(targetEntity = Location.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "departure_id", referencedColumnName = "id")
@@ -36,16 +34,15 @@ public class Train implements Serializable {
 	private Location arrivalLocation;
 	@Temporal(TemporalType.DATE)
 	private Date arraivalDate;
-	private int FirstACSeats;
-	private int SecondACSeats;
-	private int ThirdACSeats;
-	private int SleeperClassSeats;
-	private int SecondarySittingSeats;
-	
-	public long getTrainNo() {
+	private int firstACSeats;
+	private int secondACSeats;
+	private int thirdACSeats;
+	private int sleeperClassSeats;
+	private int secondarySittingSeats;
+	public Long getTrainNo() {
 		return trainNo;
 	}
-	public void setTrainNo(long trainNo) {
+	public void setTrainNo(Long trainNo) {
 		this.trainNo = trainNo;
 	}
 	public String getTrainName() {
@@ -54,7 +51,6 @@ public class Train implements Serializable {
 	public void setTrainName(String trainName) {
 		this.trainName = trainName;
 	}
-	
 	public Fare getFarelist() {
 		return farelist;
 	}
@@ -80,34 +76,34 @@ public class Train implements Serializable {
 		this.arraivalDate = arraivalDate;
 	}
 	public int getFirstACSeats() {
-		return FirstACSeats;
+		return firstACSeats;
 	}
 	public void setFirstACSeats(int firstACSeats) {
-		FirstACSeats = firstACSeats;
+		this.firstACSeats = firstACSeats;
 	}
 	public int getSecondACSeats() {
-		return SecondACSeats;
+		return secondACSeats;
 	}
 	public void setSecondACSeats(int secondACSeats) {
-		SecondACSeats = secondACSeats;
+		this.secondACSeats = secondACSeats;
 	}
 	public int getThirdACSeats() {
-		return ThirdACSeats;
+		return thirdACSeats;
 	}
 	public void setThirdACSeats(int thirdACSeats) {
-		ThirdACSeats = thirdACSeats;
+		this.thirdACSeats = thirdACSeats;
 	}
 	public int getSleeperClassSeats() {
-		return SleeperClassSeats;
+		return sleeperClassSeats;
 	}
 	public void setSleeperClassSeats(int sleeperClassSeats) {
-		SleeperClassSeats = sleeperClassSeats;
+		this.sleeperClassSeats = sleeperClassSeats;
 	}
 	public int getSecondarySittingSeats() {
-		return SecondarySittingSeats;
+		return secondarySittingSeats;
 	}
 	public void setSecondarySittingSeats(int secondarySittingSeats) {
-		SecondarySittingSeats = secondarySittingSeats;
+		this.secondarySittingSeats = secondarySittingSeats;
 	}
 	
 	

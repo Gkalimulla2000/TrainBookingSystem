@@ -12,13 +12,13 @@ public class TrainDto {
 	private Location departureLocation;
 	private Location arrivalLocation;
 	private Date arraivalDate;
-	private int FirstACSeats;
-	private int SecondACSeats;
-	private int ThirdACSeats;
-	private int SleeperClassSeats;
-	private int SecondarySittingSeats;
+	private int firstACSeats;
+	private int secondACSeats;
+	private int thirdACSeats;
+	private int sleeperClassSeats;
+	private int secondarySittingSeats;
 	public long getTrainNo() {
-		return trainNo;
+		return trainNo;	
 	}
 	public void setTrainNo(long trainNo) {
 		this.trainNo = trainNo;
@@ -55,34 +55,34 @@ public class TrainDto {
 		this.arraivalDate = arraivalDate;
 	}
 	public int getFirstACSeats() {
-		return FirstACSeats;
+		return firstACSeats;
 	}
 	public void setFirstACSeats(int firstACSeats) {
-		FirstACSeats = firstACSeats;
+		this.firstACSeats = firstACSeats;
 	}
 	public int getSecondACSeats() {
-		return SecondACSeats;
+		return secondACSeats;
 	}
 	public void setSecondACSeats(int secondACSeats) {
-		SecondACSeats = secondACSeats;
+		this.secondACSeats = secondACSeats;
 	}
 	public int getThirdACSeats() {
-		return ThirdACSeats;
+		return thirdACSeats;
 	}
 	public void setThirdACSeats(int thirdACSeats) {
-		ThirdACSeats = thirdACSeats;
+		this.thirdACSeats = thirdACSeats;
 	}
 	public int getSleeperClassSeats() {
-		return SleeperClassSeats;
+		return sleeperClassSeats;
 	}
 	public void setSleeperClassSeats(int sleeperClassSeats) {
-		SleeperClassSeats = sleeperClassSeats;
+		this.sleeperClassSeats = sleeperClassSeats;
 	}
 	public int getSecondarySittingSeats() {
-		return SecondarySittingSeats;
+		return secondarySittingSeats;
 	}
 	public void setSecondarySittingSeats(int secondarySittingSeats) {
-		SecondarySittingSeats = secondarySittingSeats;
+		this.secondarySittingSeats = secondarySittingSeats;
 	}
 	
 	

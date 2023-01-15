@@ -1,8 +1,8 @@
 package com.irctc.trainbookingsystem.dto;
 
 public class UserDto {
-	private int id;
-	private String userId;
+	
+	private int userId;
 	private String userName;
 	private String password;
 	private String firstName;
@@ -10,16 +10,11 @@ public class UserDto {
 	private long phoneNo;
 	private String email;
 	private int walletBalance;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getUserId() {
+	
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {

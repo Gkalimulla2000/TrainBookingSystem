@@ -1,7 +1,5 @@
 package com.irctc.trainbookingsystem.exception;
 
-import org.springframework.beans.factory.config.RuntimeBeanNameReference;
-
 public class DataAlreadyExistsException extends RuntimeException{
 
 	public DataAlreadyExistsException() {

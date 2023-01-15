@@ -30,8 +30,8 @@ private AdminService adminService;
 		return new ResponseEntity<>(adminService.addTrain(trainDto),HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/getTrainByID")
-	
+	@GetMapping("/getTrainByID{trainNumber}")
+		
 	public ResponseEntity<?> getTrainById(@PathVariable Long trainNumber){
 		TrainDto train=adminService.getTrainByNumber(trainNumber); 
 		return new ResponseEntity<>(train,HttpStatus.OK);

@@ -2,19 +2,18 @@ package com.irctc.trainbookingsystem.entity;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity(name="users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String userId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int userId;
 	private String userName;
 	private String password;
 	private String firstName;
@@ -23,19 +22,13 @@ public class User implements Serializable {
 	private String email;
 	private int walletBalance;
 
-	public int getId() {
-		return id;
-	}
+	
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

@@ -20,16 +20,16 @@ private TrainService trainService;
 @Autowired
 private AdminService adminService;
 
-@GetMapping("/getTrainFares{trainNumber}{classType}")
-public ResponseEntity<?> getTrainFaresByClassType(@PathVariable Long trainNumber ,String classType){
+@GetMapping("/getTrainFares{trainNumber}&{classType}")
+public ResponseEntity<?> getTrainFaresByClassType(@PathVariable Long trainNumber ,@PathVariable String classType){
 	
 	
 	return new ResponseEntity<>(trainService.getTrainFaresByClassType(trainNumber,classType),HttpStatus.OK);
 	
 }
 
-@GetMapping("/getAllTrainsFromSourceToDestination{startStation}{destinationStation}")
-public ResponseEntity<?> getAllTrainsFromSourceToDestination(@PathVariable String startStation ,String destinationStation){
+@GetMapping("/getAllTrainsFromSourceToDestination{startStation}&{destinationStation}")
+public ResponseEntity<?> getAllTrainsFromSourceToDestination(@PathVariable String startStation ,@PathVariable String destinationStation){
 	
 	
 	return new ResponseEntity<>(trainService.getAllTrainsFromSourceToDestination(startStation, destinationStation),HttpStatus.OK);
