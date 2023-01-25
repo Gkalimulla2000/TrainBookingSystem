@@ -1,18 +1,31 @@
 package com.irctc.trainbookingsystem.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.irctc.trainbookingsystem.entity.Passenger;
 
 public class BookingDto {
-	private long pnrNo;
+	
+	private Long pnrNo;
 
 	private Date bookingDate;
 	private Date travelDate;
-	private long trainNo;
+	private Long trainNo;
 	private String classType;
-	public long getPnrNo() {
+	private int userId;
+	@JsonIgnore
+	private long totalFare;
+	
+	
+	private List<Passenger> passengers;
+	
+	
+	public Long getPnrNo() {
 		return pnrNo;
 	}
-	public void setPnrNo(long pnrNo) {
+	public void setPnrNo(Long pnrNo) {
 		this.pnrNo = pnrNo;
 	}
 	public Date getBookingDate() {
@@ -27,10 +40,10 @@ public class BookingDto {
 	public void setTravelDate(Date travelDate) {
 		this.travelDate = travelDate;
 	}
-	public long getTrainNo() {
+	public Long getTrainNo() {
 		return trainNo;
 	}
-	public void setTrainNo(long trainNo) {
+	public void setTrainNo(Long trainNo) {
 		this.trainNo = trainNo;
 	}
 	public String getClassType() {
@@ -38,5 +51,25 @@ public class BookingDto {
 	}
 	public void setClassType(String classType) {
 		this.classType = classType;
+	}
+	
+	public long getTotalFare() {
+		return totalFare;
+	}
+	public void setTotalFare(long totalFare) {
+		this.totalFare = totalFare;
+	}
+	
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }

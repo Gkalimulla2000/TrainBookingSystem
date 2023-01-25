@@ -20,7 +20,7 @@ public class User implements Serializable {
 	private String lastName;
 	private long phoneNo;
 	private String email;
-	private int walletBalance;
+	private long walletBalance;
 
 	
 
@@ -80,11 +80,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public int getWalletBalance() {
+	public long getWalletBalance() {
 		return walletBalance;
 	}
 
-	public void setWalletBalance(int walletBalance) {
+	public void setWalletBalance(long walletBalance) {
 		this.walletBalance = walletBalance;
 	}
 

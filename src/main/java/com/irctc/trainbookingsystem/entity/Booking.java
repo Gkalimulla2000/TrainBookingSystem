@@ -2,10 +2,14 @@ package com.irctc.trainbookingsystem.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -28,17 +32,23 @@ public class Booking implements Serializable {
 	)
 	@GeneratedValue(generator = "pnrNo-sequence-generator")
 	@JsonIgnore
-	private long pnrNo;
+	private Long pnrNo;
 	
 	private Date bookingDate;
 	private Date travelDate;
-	private long trainNo;
+	private Long trainNo;
 	private String classType;
+	private int userId;
 	
-	public long getPnrNo() {
+	private long totalFare;
+	
+	@OneToMany(targetEntity = Passenger.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "booking_passengers_pnrNo", referencedColumnName = "pnrNo")
+	private List<Passenger> passengers;
+	public Long getPnrNo() {
 		return pnrNo;
 	}
-	public void setPnrNo(long pnrNo) {
+	public void setPnrNo(Long pnrNo) {
 		this.pnrNo = pnrNo;
 	}
 	public Date getBookingDate() {
@@ -53,10 +63,10 @@ public class Booking implements Serializable {
 	public void setTravelDate(Date travelDate) {
 		this.travelDate = travelDate;
 	}
-	public long getTrainNo() {
+	public Long getTrainNo() {
 		return trainNo;
 	}
-	public void setTrainNo(long trainNo) {
+	public void setTrainNo(Long trainNo) {
 		this.trainNo = trainNo;
 	}
 	public String getClassType() {
@@ -65,6 +75,25 @@ public class Booking implements Serializable {
 	
 	public void setClassType(String classType) {
 		this.classType = classType;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public long getTotalFare() {
+		return totalFare;
+	}
+	public void setTotalFare(long totalFare) {
+		this.totalFare = totalFare;
+	}
+	
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
 	}
 	
 	
