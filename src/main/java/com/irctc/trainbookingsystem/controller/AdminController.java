@@ -26,7 +26,7 @@ private AdminService adminService;
 	@PostMapping("/addTrain")
 	public ResponseEntity<?> addTrain(@RequestBody TrainDto trainDto)
 	{
-		
+		      
 		return new ResponseEntity<>(adminService.addTrain(trainDto),HttpStatus.CREATED);
 	}
 	
