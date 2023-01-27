@@ -23,12 +23,12 @@ public ResponseEntity<?> bookTicket(@RequestBody BookingDto bookingDto){
 }
 
 @GetMapping("/cancelTicket")
-public ResponseEntity<?> cancelTicket(@RequestParam long pnrNo){
+public ResponseEntity<?> cancelTicket(@RequestParam Long pnrNo){
 	return new ResponseEntity<>(bookingService.cancelTicket(pnrNo),HttpStatus.OK);
 }
 
 @GetMapping("/bookingInformation")
-public ResponseEntity<?> bookingInfrmation(@RequestParam long pnrNo){
+public ResponseEntity<?> bookingInfrmation(@RequestParam Long pnrNo){
 	return new ResponseEntity<>(bookingService.BookingInformation(pnrNo),HttpStatus.OK);
 }
 

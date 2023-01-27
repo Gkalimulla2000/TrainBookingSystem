@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 		Optional<User> userCheck=userDao.findById(userId);
 		UserDto userDto=new UserDto();
-		BeanUtils.copyProperties(userCheck.get(), userDto);
+		BeanUtils.copyProperties(userCheck, userDto);
 		if(userCheck.isPresent()) {
 			return userDto;
 		}else {

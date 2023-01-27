@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,12 +27,13 @@ public class Booking implements Serializable {
 	        strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
 	        parameters = {
 	                @Parameter(name = "sequence_name", value = "user_sequence"),
-	                @Parameter(name = "initial_value", value = "971401300"),
+	                @Parameter(name = "initial_value", value = "970140"),
 	                @Parameter(name = "increment_size", value = "2")
 	        }
 	)
 	@GeneratedValue(generator = "pnrNo-sequence-generator")
 	@JsonIgnore
+	@Column(name="pnrNo")
 	private Long pnrNo;
 	
 	private Date bookingDate;
@@ -43,7 +45,7 @@ public class Booking implements Serializable {
 	private long totalFare;
 	
 	@OneToMany(targetEntity = Passenger.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "booking_passengers_pnrNo", referencedColumnName = "pnrNo")
+	@JoinColumn(name = "pnrNo", referencedColumnName = "pnrNo")
 	private List<Passenger> passengers;
 	public Long getPnrNo() {
 		return pnrNo;

@@ -10,9 +10,9 @@ import com.irctc.trainbookingsystem.entity.Booking;
 
 
 @Repository
-public interface BookingDao extends CrudRepository<Booking, Integer>{
+public interface BookingDao extends CrudRepository<Booking, Long>{
 
-	Optional<Booking> findByPnrNo(Long pnrNo);
+	public Optional<Booking> findByPnrNo(long pnrNo);
 
 public void deleteByPnrNo(long pnrNo);
 

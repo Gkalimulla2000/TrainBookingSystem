@@ -6,7 +6,7 @@ import com.irctc.trainbookingsystem.entity.Booking;
 public interface BookingService {
 
 	public long bookTicket(BookingDto booking);
-	public String cancelTicket(long pnrNo);
-	public BookingDto BookingInformation(long pnrNo);
+	public String cancelTicket(Long pnrNo);
+	public Booking BookingInformation(Long pnrNo);
 
 }
