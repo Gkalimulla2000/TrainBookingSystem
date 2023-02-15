@@ -42,15 +42,13 @@ public class BookingServiceImpl implements BookingService {
 		BeanUtils.copyProperties(bookingDto, booking);
 		Optional<Booking> bookingCheck = bookingDao.findByPnrNo(booking.getPnrNo());
 
-		
-		
 		if (!bookingCheck.isPresent()
 				&& updateSeats(booking.getTrainNo(), booking.getClassType(), passengers.size(), booking.getPnrNo())
 				&& updateBalance(booking.getUserId(), totalfare)) {
 
 			Booking book = bookingDao.save(booking);
 			book.setTotalFare(totalfare);
-			
+
 			return book.getPnrNo();
 		}
 		throw new DataAlreadyExistsException(
@@ -118,7 +116,7 @@ public class BookingServiceImpl implements BookingService {
 
 	public String cancelTicket(Long pnrNo) {
 		Optional<Booking> booking = bookingDao.findById(pnrNo);
-		
+
 		if (booking.isPresent()) {
 			Optional<Train> train = trainDao.findById(booking.get().getTrainNo());
 			User user = userDao.findByUserId(booking.get().getUserId());
@@ -135,14 +133,16 @@ public class BookingServiceImpl implements BookingService {
 			}
 
 			if (booking.get().getClassType().equalsIgnoreCase("SleeperClass")) {
-				train.get().setSleeperClassSeats(train.get().getSleeperClassSeats() + booking.get().getPassengers().size());
+				train.get().setSleeperClassSeats(
+						train.get().getSleeperClassSeats() + booking.get().getPassengers().size());
 			}
 
 			if (booking.get().getClassType().equalsIgnoreCase("SecondarySitting")) {
-				train.get().setSecondarySittingSeats(train.get().getSecondarySittingSeats() + booking.get().getPassengers().size());
+				train.get().setSecondarySittingSeats(
+						train.get().getSecondarySittingSeats() + booking.get().getPassengers().size());
 			}
 
-			user.setWalletBalance(user.getWalletBalance()+booking.get().getTotalFare());
+			user.setWalletBalance(user.getWalletBalance() + booking.get().getTotalFare());
 			trainDao.save(train.get());
 			bookingDao.deleteById(pnrNo);
 			return "Ticket Cancelled ";
@@ -155,9 +155,9 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Booking BookingInformation(Long pnrNo) {
 		Optional<Booking> booking = bookingDao.findById(pnrNo);
-		//List<Passenger> passengers=passengerDao.findAllByPnrNo(pnrNo);
+		// List<Passenger> passengers=passengerDao.findAllByPnrNo(pnrNo);
 		if (booking.isPresent()) {
-		//	booking.get().setPassengers(passengers);
+			// booking.get().setPassengers(passengers);
 			return booking.get();
 		} else {
 			throw new NoDataPresentException("No booking found");
@@ -165,5 +165,4 @@ public class BookingServiceImpl implements BookingService {
 
 	}
 
-	
 }

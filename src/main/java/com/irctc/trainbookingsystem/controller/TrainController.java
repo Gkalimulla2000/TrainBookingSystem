@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irctc.trainbookingsystem.dto.TrainDto;
@@ -28,8 +29,21 @@ public ResponseEntity<?> getTrainFaresByClassType(@PathVariable Long trainNumber
 	
 }
 
-@GetMapping("/getAllTrainsFromSourceToDestination{startStation}&{destinationStation}")
-public ResponseEntity<?> getAllTrainsFromSourceToDestination(@PathVariable String startStation ,@PathVariable String destinationStation){
+/*
+ * @GetMapping(
+ * "/getAllTrainsFromSourceToDestination{startStation}&{destinationStation}")
+ * public ResponseEntity<?> getAllTrainsFromSourceToDestination(@PathVariable
+ * String startStation ,@PathVariable String destinationStation){
+ * 
+ * 
+ * return new ResponseEntity<>(trainService.getAllTrainsFromSourceToDestination(
+ * startStation, destinationStation),HttpStatus.OK);
+ * 
+ * }
+ */
+
+@GetMapping("/getAllTrainsFromSourceToDestination")
+public ResponseEntity<?> getAllTrainsFromSourceToDestination(@RequestParam(value="startStation") String startStation ,@RequestParam(value="destinationStation") String destinationStation){
 	
 	
 	return new ResponseEntity<>(trainService.getAllTrainsFromSourceToDestination(startStation, destinationStation),HttpStatus.OK);
@@ -42,9 +56,9 @@ public ResponseEntity<?> getTrainByName(@PathVariable String trainName){
 	return new ResponseEntity<>(trainService.getTrainByName(trainName),HttpStatus.OK);
 	
 }
-@GetMapping("/getTrainByID{trainNumber}")
+@GetMapping("/getTrainByID")
 
-public ResponseEntity<?> getTrainById(@PathVariable Long trainNumber){
+public ResponseEntity<?> getTrainById(@RequestParam Long trainNumber){
 	TrainDto train=adminService.getTrainByNumber(trainNumber); 
 	return new ResponseEntity<>(train,HttpStatus.OK);
 	
